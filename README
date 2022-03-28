@@ -1,0 +1,76 @@
+1. create virtualenv and activate it
+2. pip3 install -r requirements.txt
+3. python3 manage.py migrate
+4. python3 manage.py runserver
+
+ASSUMPTIONS
+=====================================================================================
+1.Token authentication is provided for both interviewer and candidate which will be used while calling the apis.
+2.A candidate or interviewer can add one single time interval for a day, which is a backlog in this idea.
+=====================================================================================
+
+API CALL
+=====================================================================================
+ POST:  http://127.0.0.1:8000/apis/candidate/time_slot/
+---------------------------------------------------------
+JSON:
+---------------------------------------------------------
+ request: {
+    "interview_date":"2022-04-10",
+    "start_time":1646909118,
+    "end_time":1646937918
+}
+
+ response: {
+    "status": "success",
+}
+=======================================================================================
+POST:  http://127.0.0.1:8000/apis/interviewer/time_slot/
+---------------------------------------------------------
+JSON:
+---------------------------------------------------------
+ request: {
+    "interview_date":"2022-04-10",
+    "start_time":1646909118,
+    "end_time":1646937918
+}
+
+ response: {
+    "status": "success",
+}
+=======================================================================================
+POST:  http://127.0.0.1:8000/apis/schedule/interview/
+---------------------------------------------------------
+JSON:
+---------------------------------------------------------
+ request: {
+    "interview_date":"2022-04-10",
+    "candidate_id":5,
+    "interviewer_id":4
+}
+
+ response: {
+    "time_slots": [
+        [
+            "13:00",
+            "14:00"
+        ],
+        [
+            "14:00",
+            "15:00"
+        ],
+        [
+            "15:00",
+            "16:00"
+        ],
+        [
+            "16:00",
+            "17:00"
+        ],
+        [
+            "17:00",
+            "18:00"
+        ]
+    ]
+}
+=======================================================================================
